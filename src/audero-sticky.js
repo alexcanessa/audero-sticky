@@ -27,7 +27,8 @@
     */
    var defaults = {
       selector: '.sticky',
-      activeClass: 'sticky--active'
+      activeClass: 'sticky--active',
+      startOffset: 0
    };
 
    /**
@@ -400,6 +401,7 @@
          boundaries = isAdded ?
             calculateBoundaries(data.placeholder, stickyMargins) :
             calculateBoundaries(sticky.element, stickyMargins);
+         boundaries.start += sticky.settings.startOffset;
 
          var height = parseFloat(window.getComputedStyle(sticky.element).height) || 0;
          var gap = boundaries.end - height - window.pageYOffset;
@@ -424,6 +426,7 @@
          boundaries = isAdded ?
             calculateBoundaries(data.placeholder, stickyMargins) :
             calculateBoundaries(sticky.element, stickyMargins);
+         boundaries.start -= sticky.settings.startOffset;
 
          var height = parseFloat(window.getComputedStyle(sticky.element).height) || 0;
          var windowBottom = window.pageYOffset + window.innerHeight;
